@@ -1,0 +1,22 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+select {
+  padding: 5px 0;
+}
+
+.btn {
+  padding: 7px 0;
+  font: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-success {
+  background: green;
+  color: white;
+}

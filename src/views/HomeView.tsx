@@ -1,19 +1,21 @@
-import MaterialList from '../components/MaterialList'
-import PiecesList from '../components/PiecesList'
-import TodoList from '../components/TodoList'
-import './HomeView.css'
+import MaterialList from "../components/MaterialList";
+import PiecesList from "../components/PiecesList";
+import { CreatePieceForm } from "../components/CreatePieceForm";
+import TodoList from "../components/TodoList";
+import "./HomeView.css";
 
-const HomeView = () => {
+const HomeView: React.FC = () => {
   return (
     <div className="container">
       <TodoList />
-      <div style={{ marginTop: '10px' }} />
-      <main className="home-grid">
+      <div className="mt-10" />
+      <div className="home-grid">
+        <CreatePieceForm />
         <MaterialList />
         <PiecesList />
-      </main>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomeView 
+export default HomeView;

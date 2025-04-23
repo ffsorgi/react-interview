@@ -8,4 +8,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-} 
+}
+
+.mt-10 {
+  margin-top: 10px;
+}

@@ -1,59 +1,36 @@
-interface Task {
-  name: string
-}
+import { usePublicJson } from "../hooks/";
+import { TTask } from "../types";
+import { Loading } from "./ui/Loading";
 
-const tasks: Task[] = [
-  {
-    name: 'Hacer fetching de los materiales.'
-  },
-  {
-    name: 'Arreglar la estructura de la tabla de materiales.'
-  },
-  {
-    name: 'Resolver los errores de la consola.'
-  },
-  {
-    name: 'Mostrar un loading al cargar los materiales.'
-  },
-  {
-    name: 'Completar la tabla de piezas.'
-  },
-  {
-    name: 'Especificar encima de la tabla de piezas, la sumatoria de los metros cuadrados (m2) de las piezas.'
-  },
-  {
-    name: 'Añadir la clase "cajon" a los items de la tabla de piezas que sean del tipo CAJON.'
-  },
-  {
-    name: 'Bonus: armar un selector para renderizar las piezas segun su tipo (BASE, CAJON, PUERTA).'
-  },
-  {
-    name: 'Bonus 2: Realizar un formulario para crear una nueva pieza, con validación de los datos y persistencia.'
-  }
-]
+const TodoList: React.FC = () => {
+  const { data: tasks, isLoading, error } = usePublicJson<TTask>("tasks");
 
-const TodoList = () => {
+  //Esto se puede manejar enviando una toast, un alert o de otra manera
+  if (error) return <>{error}</>;
+
   return (
-    <div>
-    <h1>Tareas para completar</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Tarea</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          tasks.map(task => (
+    <>
+      <h1>Tareas para completar</h1>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <table>
+          <thead>
             <tr>
-              <td>{ task.name }</td>
+              <th>Tarea</th>
             </tr>
-          ))
-        }
-      </tbody>
-    </table>
-  </div>
-  )
-}
+          </thead>
+          <tbody>
+            {tasks.map((task, index) => (
+              <tr key={index}>
+                <td>{task.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </>
+  );
+};
 
-export default TodoList 
+export default TodoList;
